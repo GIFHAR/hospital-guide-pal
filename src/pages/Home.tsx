@@ -8,6 +8,7 @@ import PageTransition from '@/components/PageTransition';
 import CardTile from '@/components/CardTile';
 import { useAppStore } from '@/store/useAppStore';
 import { useGuidedSteps } from '@/hooks/useGuidedSteps';
+import nurseImg from '@/assets/nurse.jpeg';
 
 const tiles = [
   { id: 'MyStay', label: 'MyStay', icon: Bed, route: '/mystay' },
@@ -41,8 +42,8 @@ const Home = () => {
       <PageTransition>
         <div className="w-full max-w-4xl mx-auto flex items-center gap-8">
           {/* Nurse illustration */}
-          <div className="flex-shrink-0 w-48 h-64 rounded-2xl bg-secondary flex items-center justify-center">
-            <span className="text-6xl">👩‍⚕️</span>
+          <div className="flex-shrink-0 w-48 h-64">
+            <img src={nurseImg} alt="Nurse Louise" className="w-full h-full object-contain object-bottom" />
           </div>
 
           {/* Main panel */}

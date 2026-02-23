@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import LayoutShell from '@/components/LayoutShell';
 import PageTransition from '@/components/PageTransition';
 import CardTile from '@/components/CardTile';
+import NurseSpeechBubble from '@/components/NurseSpeechBubble';
 import { useAppStore } from '@/store/useAppStore';
 import { useGuidedSteps } from '@/hooks/useGuidedSteps';
 
@@ -40,10 +41,11 @@ const MyStay = () => {
     <LayoutShell>
       <PageTransition>
         <div className="w-full max-w-4xl mx-auto flex items-center gap-8">
-          {/* Nurse illustration */}
-          <div className="flex-shrink-0 w-48 h-64 rounded-2xl bg-secondary flex items-center justify-center">
-            <span className="text-6xl">👩‍⚕️</span>
-          </div>
+          {/* Nurse with speech bubble */}
+          <NurseSpeechBubble
+            message="Welcome to MyStay! Here you can find information about your stay, your care plan, and contact your care team. Tap 'Info and Guidance' to learn more about the hospital."
+            nurseSize="md"
+          />
 
           <div className="flex-1 flex flex-col gap-4">
             {/* Header */}

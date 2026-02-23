@@ -5,6 +5,7 @@ import { toast } from 'sonner';
 import LayoutShell from '@/components/LayoutShell';
 import PageTransition from '@/components/PageTransition';
 import CardTile from '@/components/CardTile';
+import NurseSpeechBubble from '@/components/NurseSpeechBubble';
 import { useGuidedSteps } from '@/hooks/useGuidedSteps';
 
 const tiles = [
@@ -28,37 +29,45 @@ const InfoGuidance = () => {
   return (
     <LayoutShell>
       <PageTransition>
-        <div className="w-full max-w-3xl mx-auto flex flex-col gap-5">
-          <div className="flex items-center gap-2">
-            <Info className="w-5 h-5 text-primary" />
-            <h2 className="text-xl font-bold text-foreground">Info and Guidance</h2>
-          </div>
+        <div className="w-full max-w-4xl mx-auto flex items-center gap-8">
+          {/* Nurse with speech bubble */}
+          <NurseSpeechBubble
+            message="This is the Info and Guidance section. Here you can learn about your department, explore hospital information, or check out the available facilities. Tap 'Facilities' to see what's nearby!"
+            nurseSize="md"
+          />
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="rounded-3xl bg-card p-6 border border-border"
-            style={{ boxShadow: 'var(--tile-shadow)' }}
-          >
-            <div className="grid grid-cols-3 gap-4">
-              {tiles.map((tile) => (
-                <CardTile
-                  key={tile.id}
-                  icon={<tile.icon className="w-8 h-8" />}
-                  label={tile.label}
-                  highlighted={highlightTarget === tile.label}
-                  onClick={() => handleTileClick(tile)}
-                />
-              ))}
+          <div className="flex-1 flex flex-col gap-5">
+            <div className="flex items-center gap-2">
+              <Info className="w-5 h-5 text-primary" />
+              <h2 className="text-xl font-bold text-foreground">Info and Guidance</h2>
             </div>
-          </motion.div>
 
-          <button
-            onClick={() => navigate('/mystay')}
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors self-start"
-          >
-            <ArrowLeft className="w-4 h-4" /> Go Back
-          </button>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="rounded-3xl bg-card p-6 border border-border"
+              style={{ boxShadow: 'var(--tile-shadow)' }}
+            >
+              <div className="grid grid-cols-3 gap-4">
+                {tiles.map((tile) => (
+                  <CardTile
+                    key={tile.id}
+                    icon={<tile.icon className="w-8 h-8" />}
+                    label={tile.label}
+                    highlighted={highlightTarget === tile.label}
+                    onClick={() => handleTileClick(tile)}
+                  />
+                ))}
+              </div>
+            </motion.div>
+
+            <button
+              onClick={() => navigate('/mystay')}
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors self-start"
+            >
+              <ArrowLeft className="w-4 h-4" /> Go Back
+            </button>
+          </div>
         </div>
       </PageTransition>
     </LayoutShell>
