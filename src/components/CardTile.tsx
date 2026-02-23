@@ -35,9 +35,9 @@ const CardTile = ({ icon, image, label, description, selected, highlighted, dimm
       {icon && !image && (
         <div className="text-primary mb-3">{icon}</div>
       )}
-      <span className="font-bold text-base text-foreground">{label}</span>
+      <span className="font-bold text-3xl text-foreground">{label}</span>
       {description && (
-        <span className="text-xs text-muted-foreground mt-1 leading-snug">{description}</span>
+        <span className="text-xl text-muted-foreground mt-1 leading-snug">{description}</span>
       )}
     </motion.button>
   );

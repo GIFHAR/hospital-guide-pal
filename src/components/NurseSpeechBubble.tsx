@@ -39,7 +39,7 @@ const NurseSpeechBubble = ({ message }: NurseSpeechBubbleProps) => {
       initial={{ opacity: 0, x: -30 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
-      className="w-[200px] h-[380px] overflow-hidden"
+      className="w-[160px] h-[260px] overflow-hidden mt-16"
     >
       <img
         src={nurseImg}

@@ -21,7 +21,7 @@ const LayoutShell = ({ children, showNurseToggle = false }: LayoutShellProps) =>
   return (
     <div className="min-h-screen w-full flex flex-col bg-background">
       {/* Header band */}
-      <header className="header-band flex items-center justify-between px-8 py-3">
+      <header className="header-band flex items-center justify-between px-8 py-8">
         <div className="flex items-center gap-3">
         <img
           src="/hospital-logo.png"
@@ -47,7 +47,7 @@ const LayoutShell = ({ children, showNurseToggle = false }: LayoutShellProps) =>
                   <Power className="w-3.5 h-3.5 text-destructive" />
                 </motion.div>
               </button>
-              <span className="text-sm font-bold text-foreground leading-tight max-w-[120px]">Turn off nurse assistance</span>
+              <span className="text-3xl font-bold text-foreground leading-tight max-w-[420px]">Turn off nurse assistance</span>
             </div>
           )}
           <button className="p-2 rounded-full hover:bg-secondary transition-colors">
@@ -57,7 +57,7 @@ const LayoutShell = ({ children, showNurseToggle = false }: LayoutShellProps) =>
       </header>
 
       {/* Main content */}
-      <main className="flex-1 flex items-center justify-center p-6">
+      <main className="flex-1 flex items-start justify-center pt-10 px-6 pb-6">
         {children}
       </main>
     </div>

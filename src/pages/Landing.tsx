@@ -37,15 +37,15 @@ const Landing = () => {
   return (
     <LayoutShell>
       <PageTransition>
-        <div className="w-full max-w-3xl mx-auto flex flex-col items-center gap-6">
+        <div className="app-container flex flex-col items-center gap-8 scale-[1.1] origin-top">
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-foreground">Welcome To The Tablet!</h1>
-            <p className="text-muted-foreground mt-1 text-lg">Configure tablet access based on patient condition</p>
-            <p className="text-sm text-muted-foreground mt-2">Pick one or more to continue</p>
+            <h1 className="text-5xl font-bold text-foreground">Welcome To The Tablet!</h1>
+            <p className="text-muted-foreground mt-1 text-2xl">Configure tablet access based on patient condition</p>
+            <p className="text-xl text-muted-foreground mt-2">Pick one or more to continue</p>
           </div>
 
           {/* 2x2 grid - horizontal cards matching screenshot */}
-          <div className="grid grid-cols-2 gap-5 w-full">
+          <div className="app-grid w-full">
             {assistances.map((a) => {
               const selected = selectedAssistances.includes(a.id);
               return (

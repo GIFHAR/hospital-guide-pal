@@ -15,7 +15,7 @@ import cardContact from '@/assets/card-contact.png';
 const tiles = [
   {
     id: 'InfoGuidance',
-    label: 'Info and Guidance',
+    label: 'Info & Guidance',
     description: 'Department, Hospital, and Facilities',
     image: cardInfo,
     route: '/mystay/info-guidance',
@@ -53,7 +53,7 @@ const MyStay = () => {
   return (
     <LayoutShell showNurseToggle>
       <PageTransition>
-        <div className="w-full max-w-5xl mx-auto flex items-end gap-6">
+        <div className="app-container flex items-end gap-6">
           {/* Nurse with speech bubble */}
           <NurseSpeechBubble
             message="Welcome to MyStay! Here you can find information about your department, view your care plan, or contact your care team. Tap 'Info and Guidance' to learn more."
@@ -63,7 +63,7 @@ const MyStay = () => {
             {/* Header */}
             <div className="flex items-center gap-2">
               <HomeIcon className="w-7 h-7 text-primary" strokeWidth={1.5} />
-              <h2 className="text-2xl font-bold text-foreground">MyStay</h2>
+              <h2 className="text-3xl font-bold text-foreground">MyStay</h2>
             </div>
 
             {/* Panel */}

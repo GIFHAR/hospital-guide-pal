@@ -34,7 +34,7 @@ const Home = () => {
   return (
     <LayoutShell showNurseToggle>
       <PageTransition>
-        <div className="w-full max-w-5xl mx-auto flex items-end gap-4">
+        <div className="app-container w-full max-w-5xl mx-auto flex items-end gap-4">
           {/* Nurse with speech bubble */}
           <NurseSpeechBubble
             message="Hello! I'm Nurse Louise. Welcome to your tablet. Tap 'MyStay' to explore your stay information, comfort settings, and more!"
@@ -48,7 +48,7 @@ const Home = () => {
               className="rounded-3xl bg-secondary p-6"
             >
               {/* Tiles row */}
-              <div className="grid grid-cols-3 gap-4 mb-4">
+              <div className="app-grid grid-cols-3 gap-4 mb-4">
                 {tiles.map((tile) => (
                   <CardTile
                     key={tile.id}
@@ -67,7 +67,7 @@ const Home = () => {
                 whileTap={nurseAssistanceEnabled ? { scale: 0.98 } : {}}
                 disabled={!nurseAssistanceEnabled}
                 onClick={() => toast('Contacting Nurse Maria...')}
-                className={`w-full rounded-2xl p-5 font-bold text-xl text-left flex items-center gap-4 transition-all
+                className={`w-full rounded-2xl p-5 font-bold text-4xl flex items-center justify-center gap-4 text-center transition-all
                   ${nurseAssistanceEnabled
                     ? 'bg-card text-foreground hover:shadow-md border border-border'
                     : 'bg-muted text-muted-foreground cursor-not-allowed border border-border'
