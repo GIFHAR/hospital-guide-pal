@@ -47,6 +47,12 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        hospital: {
+          band: "hsl(var(--header-band))",
+          "band-border": "hsl(var(--header-band-border))",
+          selected: "hsl(var(--card-selected))",
+          "selected-border": "hsl(var(--card-selected-border))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

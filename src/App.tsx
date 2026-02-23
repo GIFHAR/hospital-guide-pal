@@ -3,7 +3,12 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import { AnimatePresence } from "framer-motion";
+import Landing from "./pages/Landing";
+import Home from "./pages/Home";
+import MyStay from "./pages/MyStay";
+import InfoGuidance from "./pages/InfoGuidance";
+import Facilities from "./pages/Facilities";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -12,13 +17,18 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
-      <Sonner />
+      <Sonner position="top-center" />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <AnimatePresence mode="wait">
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/mystay" element={<MyStay />} />
+            <Route path="/mystay/info-guidance" element={<InfoGuidance />} />
+            <Route path="/mystay/info-guidance/facilities" element={<Facilities />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AnimatePresence>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
