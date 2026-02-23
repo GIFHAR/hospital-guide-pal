@@ -1,24 +1,43 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Info, FileText, Phone, ArrowLeft, Home as HomeIcon } from 'lucide-react';
+import { Home as HomeIcon, ArrowLeft } from 'lucide-react';
 import { toast } from 'sonner';
 import LayoutShell from '@/components/LayoutShell';
 import PageTransition from '@/components/PageTransition';
 import CardTile from '@/components/CardTile';
 import NurseSpeechBubble from '@/components/NurseSpeechBubble';
-import { useAppStore } from '@/store/useAppStore';
 import { useGuidedSteps } from '@/hooks/useGuidedSteps';
+import cardInfo from '@/assets/card-info.png';
+import cardHealth from '@/assets/card-health.png';
+import cardContact from '@/assets/card-contact.png';
 
 const tiles = [
-  { id: 'InfoGuidance', label: 'Info and Guidance', icon: Info, route: '/mystay/info-guidance' },
-  { id: 'MySP', label: 'MySP', icon: FileText, route: null },
-  { id: 'ChatOrCall', label: 'Chat or Call', icon: Phone, route: null },
+  {
+    id: 'InfoGuidance',
+    label: 'Info and Guidance',
+    description: 'Department, Hospital, and Facilities',
+    image: cardInfo,
+    route: '/mystay/info-guidance',
+  },
+  {
+    id: 'MySP',
+    label: 'MySP',
+    description: 'View MySP Information',
+    image: cardHealth,
+    route: null,
+  },
+  {
+    id: 'ChatOrCall',
+    label: 'Chat or Call',
+    description: 'Messages and Video Calls',
+    image: cardContact,
+    route: null,
+  },
 ];
 
 const MyStay = () => {
   const navigate = useNavigate();
-  const { nurseAssistanceEnabled, setNurseAssistance } = useAppStore();
   const { highlightTarget } = useGuidedSteps();
   const [dimmedTiles, setDimmedTiles] = useState<string | null>(null);
 
@@ -31,60 +50,35 @@ const MyStay = () => {
     }
   };
 
-  const handleToggleNurse = () => {
-    const next = !nurseAssistanceEnabled;
-    setNurseAssistance(next);
-    toast(next ? 'Nurse assistance enabled' : 'Nurse assistance turned off');
-  };
-
   return (
-    <LayoutShell>
+    <LayoutShell showNurseToggle>
       <PageTransition>
-        <div className="w-full max-w-4xl mx-auto flex items-center gap-8">
+        <div className="w-full max-w-5xl mx-auto flex items-end gap-6">
           {/* Nurse with speech bubble */}
           <NurseSpeechBubble
-            message="Welcome to MyStay! Here you can find information about your stay, your care plan, and contact your care team. Tap 'Info and Guidance' to learn more about the hospital."
-            nurseSize="md"
+            message="Welcome to MyStay! Here you can find information about your department, view your care plan, or contact your care team. Tap 'Info and Guidance' to learn more."
           />
 
           <div className="flex-1 flex flex-col gap-4">
             {/* Header */}
             <div className="flex items-center gap-2">
-              <HomeIcon className="w-5 h-5 text-primary" />
-              <h2 className="text-xl font-bold text-foreground">MyStay</h2>
+              <HomeIcon className="w-7 h-7 text-primary" strokeWidth={1.5} />
+              <h2 className="text-2xl font-bold text-foreground">MyStay</h2>
             </div>
 
             {/* Panel */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="rounded-3xl bg-card p-6 border border-border"
-              style={{ boxShadow: 'var(--tile-shadow)' }}
+              className="rounded-3xl bg-secondary p-6"
             >
-              {/* Toggle */}
-              <div className="flex justify-end items-center gap-2 mb-4">
-                <span className="text-xs text-muted-foreground">Turn off nurse assistance</span>
-                <button
-                  onClick={handleToggleNurse}
-                  className={`w-11 h-6 rounded-full transition-colors relative ${
-                    nurseAssistanceEnabled ? 'bg-primary' : 'bg-muted'
-                  }`}
-                >
-                  <motion.div
-                    className="absolute top-0.5 w-5 h-5 rounded-full bg-card shadow"
-                    animate={{ left: nurseAssistanceEnabled ? 22 : 2 }}
-                    transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                  />
-                </button>
-              </div>
-
-              {/* Cards */}
               <div className="grid grid-cols-3 gap-4">
                 {tiles.map((tile) => (
                   <CardTile
                     key={tile.id}
-                    icon={<tile.icon className="w-8 h-8" />}
+                    image={tile.image}
                     label={tile.label}
+                    description={tile.description}
                     highlighted={highlightTarget === tile.label}
                     dimmed={dimmedTiles !== null && dimmedTiles !== tile.id}
                     onClick={() => handleTileClick(tile)}
@@ -96,9 +90,12 @@ const MyStay = () => {
             {/* Back */}
             <button
               onClick={() => navigate('/home')}
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors self-start"
+              className="flex items-center gap-2 text-sm font-medium text-foreground self-start"
             >
-              <ArrowLeft className="w-4 h-4" /> Go Back
+              <span className="w-7 h-7 rounded-full bg-primary flex items-center justify-center">
+                <ArrowLeft className="w-4 h-4 text-primary-foreground" />
+              </span>
+              Go Back
             </button>
           </div>
         </div>

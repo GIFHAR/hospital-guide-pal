@@ -1,76 +1,74 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import nurseImg from '@/assets/nurse.jpeg';
+import nurseImg from '@/assets/nurse-portrait.png';
 
 interface NurseSpeechBubbleProps {
   message: string;
-  showNurse?: boolean;
-  nurseSize?: 'sm' | 'md' | 'lg';
 }
 
-const NurseSpeechBubble = ({ message, showNurse = true, nurseSize = 'md' }: NurseSpeechBubbleProps) => {
+const NurseSpeechBubble = ({ message }: NurseSpeechBubbleProps) => {
   const [displayedText, setDisplayedText] = useState('');
   const [isTyping, setIsTyping] = useState(true);
+  const [showBubble, setShowBubble] = useState(false);
 
   useEffect(() => {
     setDisplayedText('');
     setIsTyping(true);
-    let i = 0;
-    const timer = setInterval(() => {
-      i++;
-      setDisplayedText(message.slice(0, i));
-      if (i >= message.length) {
-        clearInterval(timer);
-        setIsTyping(false);
-      }
-    }, 30);
-    return () => clearInterval(timer);
+    setShowBubble(false);
+
+    const bubbleDelay = setTimeout(() => {
+      setShowBubble(true);
+      let i = 0;
+      const timer = setInterval(() => {
+        i++;
+        setDisplayedText(message.slice(0, i));
+        if (i >= message.length) {
+          clearInterval(timer);
+          setIsTyping(false);
+        }
+      }, 30);
+    }, 600);
+
+    return () => clearTimeout(bubbleDelay);
   }, [message]);
 
-  const sizeClasses = {
-    sm: 'w-32 h-44',
-    md: 'w-44 h-60',
-    lg: 'w-52 h-72',
-  };
-
   return (
-    <div className="flex items-end gap-4">
-      {showNurse && (
+    <div className="flex-shrink-0 flex flex-col justify-end relative" style={{ width: '200px' }}>
+      {/* Speech bubble */}
+      {showBubble && (
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4 }}
-          className={`flex-shrink-0 ${sizeClasses[nurseSize]}`}
+          initial={{ opacity: 0, y: 10, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.3 }}
+          className="relative z-20 rounded-2xl bg-card border border-border px-4 py-3 mb-2"
+          style={{ boxShadow: '0 4px 20px -4px hsla(210, 10%, 20%, 0.12)' }}
         >
-          <img
-            src={nurseImg}
-            alt="Nurse Louise"
-            className="w-full h-full object-contain object-bottom"
-          />
+          <p className="text-xs text-foreground leading-relaxed">
+            {displayedText}
+            {isTyping && (
+              <motion.span
+                animate={{ opacity: [1, 0] }}
+                transition={{ duration: 0.5, repeat: Infinity }}
+                className="inline-block w-0.5 h-3 bg-primary ml-0.5 align-text-bottom"
+              />
+            )}
+          </p>
+          <div className="absolute -bottom-2 left-6 w-4 h-4 bg-card border-r border-b border-border rotate-45" />
         </motion.div>
       )}
 
+      {/* Nurse image - crop to show just the nurse character */}
       <motion.div
-        initial={{ opacity: 0, y: 10, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.3, delay: 0.2 }}
-        className="relative rounded-2xl bg-card border border-border p-4 max-w-xs mb-8"
-        style={{ boxShadow: 'var(--tile-shadow)' }}
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+        className="w-[200px] h-[380px] overflow-hidden"
       >
-        {/* Speech bubble tail */}
-        <div
-          className="absolute -left-2 bottom-6 w-4 h-4 bg-card border-l border-b border-border rotate-45"
+        <img
+          src={nurseImg}
+          alt="Nurse Louise"
+          className="h-full w-auto object-cover object-left"
         />
-        <p className="text-sm text-foreground relative z-10 leading-relaxed">
-          {displayedText}
-          {isTyping && (
-            <motion.span
-              animate={{ opacity: [1, 0] }}
-              transition={{ duration: 0.5, repeat: Infinity }}
-              className="inline-block w-0.5 h-4 bg-primary ml-0.5 align-text-bottom"
-            />
-          )}
-        </p>
       </motion.div>
     </div>
   );
