@@ -23,14 +23,12 @@ const LayoutShell = ({ children, showNurseToggle = false }: LayoutShellProps) =>
       {/* Header band */}
       <header className="header-band flex items-center justify-between px-8 py-3">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-lg">H</span>
-          </div>
-          <div className="leading-tight">
-            <p className="font-semibold text-foreground text-sm">Nordsjællands</p>
-            <p className="text-muted-foreground text-xs">Hospital</p>
-          </div>
-        </div>
+        <img
+          src="/hospital-logo.png"
+          alt="Hospital Logo"
+          className="h-10 w-auto"
+        />
+      </div>
 
         <div className="flex items-center gap-4">
           {showNurseToggle && (

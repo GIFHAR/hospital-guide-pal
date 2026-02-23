@@ -95,13 +95,13 @@ const Landing = () => {
             </div>
 
             {/* Continue */}
+            {/* Continue */}
             <motion.button
-              disabled={!canContinue}
+              type="button"
               onClick={() => navigate('/home')}
-              className={`flex items-center gap-3 rounded-full px-8 py-3 font-semibold text-lg transition-all border-2 border-border bg-card text-foreground
-                ${!canContinue ? 'opacity-40 cursor-not-allowed' : 'hover:shadow-lg'}
+              className={`flex items-center gap-3 rounded-full px-8 py-3 font-semibold text-lg transition-all border-2 border-border bg-card text-foreground hover:shadow-lg
                 ${justEnabled ? 'glow-pulse' : ''}`}
-              whileTap={canContinue ? { scale: 0.96 } : {}}
+              whileTap={{ scale: 0.96 }}
             >
               Continue
               <span className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">

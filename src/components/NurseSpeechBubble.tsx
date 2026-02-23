@@ -33,45 +33,59 @@ const NurseSpeechBubble = ({ message }: NurseSpeechBubbleProps) => {
   }, [message]);
 
   return (
-    <div className="flex-shrink-0 flex flex-col justify-end relative" style={{ width: '200px' }}>
-      {/* Speech bubble */}
-      {showBubble && (
-        <motion.div
-          initial={{ opacity: 0, y: 10, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.3 }}
-          className="relative z-20 rounded-2xl bg-card border border-border px-4 py-3 mb-2"
-          style={{ boxShadow: '0 4px 20px -4px hsla(210, 10%, 20%, 0.12)' }}
-        >
-          <p className="text-xs text-foreground leading-relaxed">
-            {displayedText}
-            {isTyping && (
-              <motion.span
-                animate={{ opacity: [1, 0] }}
-                transition={{ duration: 0.5, repeat: Infinity }}
-                className="inline-block w-0.5 h-3 bg-primary ml-0.5 align-text-bottom"
-              />
-            )}
-          </p>
-          <div className="absolute -bottom-2 left-6 w-4 h-4 bg-card border-r border-b border-border rotate-45" />
-        </motion.div>
-      )}
+  <>
+    {/* Nurse image (tetap di posisi sekarang) */}
+    <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5 }}
+      className="w-[200px] h-[380px] overflow-hidden"
+    >
+      <img
+        src={nurseImg}
+        alt="Nurse Louise"
+        className="h-full w-auto object-cover object-left"
+      />
+    </motion.div>
 
-      {/* Nurse image - crop to show just the nurse character */}
-      <motion.div
-        initial={{ opacity: 0, x: -30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-[200px] h-[380px] overflow-hidden"
-      >
-        <img
-          src={nurseImg}
-          alt="Nurse Louise"
-          className="h-full w-auto object-cover object-left"
+    {/* Subtitle bubble di bawah layar */}
+    {showBubble && (
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.35 }}
+    className="
+      fixed
+      bottom-8
+      -translate-x-1/2
+      left-[30%]
+      z-50
+      w-[90%]
+      max-w-3xl
+      bg-black/85
+      backdrop-blur-sm
+      text-white
+      rounded-xl
+      px-8
+      py-6
+      shadow-2xl
+      text-center
+    "
+  >
+    <p className="text-2xl font-semibold leading-relaxed">
+      {displayedText}
+      {isTyping && (
+        <motion.span
+          animate={{ opacity: [1, 0] }}
+          transition={{ duration: 0.6, repeat: Infinity }}
+          className="inline-block w-1 h-6 bg-white ml-2 align-text-bottom"
         />
-      </motion.div>
-    </div>
-  );
+      )}
+    </p>
+  </motion.div>
+)}
+  </>
+);
 };
 
 export default NurseSpeechBubble;

@@ -117,7 +117,7 @@
   .tooltip-highlight::after {
     content: '';
     @apply absolute inset-0 rounded-2xl pointer-events-none;
-    border: 2.5px dashed hsl(var(--primary));
+    border: 2.5px solid hsl(var(--primary));
     animation: pulseOutline 1.5s ease-in-out infinite;
   }
 
