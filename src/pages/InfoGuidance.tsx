@@ -11,27 +11,31 @@ import { useGuidedSteps } from '@/hooks/useGuidedSteps';
 import cardInfo from '@/assets/card-info.png';
 import cardHealth from '@/assets/card-health.png';
 import cardContact from '@/assets/card-contact.png';
+import infoIcon from '@/assets/03_info/info.png';
+import cardioIcon from '@/assets/03_info/cardio.png';
+import regionHIcon from '@/assets/03_info/regionH.png';
+import facilityIcon from '@/assets/03_info/facility.png';
 
 const tiles = [
   {
     id: 'Cardiology',
     label: 'Department of Cardiology',
     description: 'About the Department and Instruction',
-    image: cardInfo,
+    image: cardioIcon,
     route: null,
   },
   {
     id: 'Hospitals',
     label: 'Nordsjællands Hospitals',
     description: 'Website, Practical, Laboratory, and Discharged',
-    image: cardHealth,
+    image: regionHIcon,
     route: null,
   },
   {
     id: 'Facilities',
     label: 'Facilities',
     description: 'Restroom, Pharmacy, and Stores',
-    image: cardContact,
+    image: facilityIcon,
     route: '/mystay/info-guidance/facilities',
   },
 ];
@@ -61,8 +65,12 @@ const InfoGuidance = () => {
 
           <div className="flex-1 flex flex-col gap-4">
             <div className="flex items-center gap-2">
-              <Info className="w-7 h-7 text-primary" strokeWidth={1.5} />
-              <h2 className="text-2xl font-bold text-foreground">Info and Guidance</h2>
+              <img 
+                src={infoIcon} 
+                alt="Info" 
+                className="w-12 h-12 object-contain" 
+              />
+              <h2 className="text-3xl font-bold text-foreground">Info and Guidance</h2>
             </div>
 
             <motion.div

@@ -9,11 +9,15 @@ import CardTile from '@/components/CardTile';
 import NurseSpeechBubble from '@/components/NurseSpeechBubble';
 import { useAppStore } from '@/store/useAppStore';
 import { useGuidedSteps } from '@/hooks/useGuidedSteps';
+import houseIcon from '@/assets/01_home/house.png';
+import pillowsIcon from '@/assets/01_home/pillows.png';
+import playIcon from '@/assets/01_home/Play.png';
+import callsIcon from '@/assets/01_home/Calls.png';
 
 const tiles = [
-  { id: 'MyStay', label: 'MyStay', icon: Heart, route: '/mystay' },
-  { id: 'MyComfort', label: 'MyComfort', icon: Layers, route: null },
-  { id: 'ThingsToDo', label: 'Things to Do', icon: Play, route: null },
+  { id: 'MyStay', label: 'MyStay', icon: houseIcon, route: '/mystay' },
+  { id: 'MyComfort', label: 'MyComfort', icon: pillowsIcon, route: null },
+  { id: 'ThingsToDo', label: 'Things to Do', icon: playIcon, route: null },
 ];
 
 const Home = () => {
@@ -51,8 +55,8 @@ const Home = () => {
               <div className="app-grid grid-cols-3 gap-4 mb-4">
                 {tiles.map((tile) => (
                   <CardTile
-                    key={tile.id}
-                    icon={<tile.icon className="w-14 h-14" strokeWidth={1.5} />}
+                    key={tile.id}                    
+                    icon={<img src={tile.icon} className="w-20 h-20 object-contain" />}
                     label={tile.label}
                     highlighted={highlightTarget === tile.label}
                     dimmed={dimmedTiles !== null && dimmedTiles !== tile.id}
@@ -73,7 +77,11 @@ const Home = () => {
                     : 'bg-muted text-muted-foreground cursor-not-allowed border border-border'
                   }`}
               >
-                <Headset className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                <img
+                  src={callsIcon} 
+                  alt="Call Nurse" 
+                  className="w-20 h-20 object-contain" 
+                />
                 Ask a Nurse Maria
               </motion.button>
             </motion.div>

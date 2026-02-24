@@ -55,22 +55,17 @@ const NurseSpeechBubble = ({ message }: NurseSpeechBubbleProps) => {
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.35 }}
     className="
-      fixed
-      bottom-8
-      -translate-x-1/2
-      left-[30%]
-      z-50
-      w-[90%]
-      max-w-3xl
-      bg-black/85
-      backdrop-blur-sm
-      text-white
-      rounded-xl
-      px-8
-      py-6
-      shadow-2xl
-      text-center
+      fixed bottom-8 left-[25%] -translate-x-1/2 z-50
+      w-[90%] max-w-4xl
+      rounded-xl px-2 py-1
+      shadow-2xl text-center
+      shadow-[#A9C7DB]/30
     "
+    style={{
+        backgroundColor: '#F7F5E9',
+        color: '#4A7794',
+      }}
+
   >
     <p className="text-2xl font-semibold leading-relaxed">
       {displayedText}

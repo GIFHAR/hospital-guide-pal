@@ -11,27 +11,31 @@ import { useGuidedSteps } from '@/hooks/useGuidedSteps';
 import cardInfo from '@/assets/card-info.png';
 import cardHealth from '@/assets/card-health.png';
 import cardContact from '@/assets/card-contact.png';
+import houseIcon from '@/assets/02_mystay/house.png';
+import infoIcon from '@/assets/02_mystay/info.png';
+import minSPIcon from '@/assets/02_mystay/minsp.png';
+import callIcon from '@/assets/02_mystay/call.png';
 
 const tiles = [
   {
     id: 'InfoGuidance',
     label: 'Info & Guidance',
     description: 'Department, Hospital, and Facilities',
-    image: cardInfo,
+    image: infoIcon,
     route: '/mystay/info-guidance',
   },
   {
     id: 'MySP',
     label: 'MySP',
     description: 'View MySP Information',
-    image: cardHealth,
+    image: minSPIcon,
     route: null,
   },
   {
     id: 'ChatOrCall',
     label: 'Chat or Call',
     description: 'Messages and Video Calls',
-    image: cardContact,
+    image: callIcon,
     route: null,
   },
 ];
@@ -62,7 +66,11 @@ const MyStay = () => {
           <div className="flex-1 flex flex-col gap-4">
             {/* Header */}
             <div className="flex items-center gap-2">
-              <HomeIcon className="w-7 h-7 text-primary" strokeWidth={1.5} />
+              <img 
+                src={houseIcon} 
+                alt="Home" 
+                className="w-12 h-12 object-contain" 
+              />
               <h2 className="text-3xl font-bold text-foreground">MyStay</h2>
             </div>
 

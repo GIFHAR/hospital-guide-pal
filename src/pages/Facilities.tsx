@@ -10,25 +10,29 @@ import NurseSpeechBubble from '@/components/NurseSpeechBubble';
 import cardInfo from '@/assets/card-info.png';
 import cardHealth from '@/assets/card-health.png';
 import cardContact from '@/assets/card-contact.png';
+import facilityIcon from '@/assets/04_facility/facility.png';
+import toiletIcon from '@/assets/04_facility/restroom.png';
+import pharmaIcon from '@/assets/04_facility/pharma.png';
+import storeIcon from '@/assets/04_facility/store.png';
 
 const facilities = [
   {
     id: 'Restroom',
     label: 'Restroom',
     description: 'Navigate the location near me',
-    image: cardInfo,
+    image: toiletIcon,
   },
   {
     id: 'Pharmacy',
     label: 'Pharmacy',
     description: 'Navigate the location near me',
-    image: cardHealth,
+    image: pharmaIcon,
   },
   {
     id: 'Stores',
     label: 'Stores',
     description: 'Restaurant and Convenience Store',
-    image: cardContact,
+    image: storeIcon,
   },
 ];
 
@@ -53,8 +57,12 @@ const Facilities = () => {
 
           <div className="flex-1 flex flex-col gap-4">
             <div className="flex items-center gap-2">
-              <Building className="w-7 h-7 text-primary" strokeWidth={1.5} />
-              <h2 className="text-2xl font-bold text-foreground">Facilities</h2>
+              <img 
+                src={facilityIcon} 
+                alt="Facility" 
+                className="w-12 h-12 object-contain" 
+              />
+              <h2 className="text-3xl font-bold text-foreground">Facilities</h2>
             </div>
 
             <motion.div
