@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import nurseImg from '@/assets/nurse-portrait.png';
+// import nurseImg from '@/assets/nurse-portrait.png';
 import { useNurseTTS } from '@/hooks/useNurseTTS';
+import nurseVideo from '@/assets/nurse-talking-2.mp4';
 
 interface NurseSpeechBubbleProps {
   message: string;
@@ -83,17 +84,47 @@ const NurseSpeechBubble = ({ message, enabled }: NurseSpeechBubbleProps) => {
 
   return (
     <>
-      {/* Nurse image */}
+    
+      {/* Nurse video */}
+     
       <motion.div
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-[160px] h-[260px] overflow-hidden mt-16"
+        className="w-[260px] h-[420px] mt-6 ml-6"
       >
-        <img
-          src={nurseImg}
-          alt="Nurse Louise"
-          className="h-full w-auto object-cover object-left"
+        <video
+          ref={(el) => {
+            if (!el) return;
+
+            // stop video kalau toggle OFF
+            if (!enabled) {
+              el.pause();
+              return;
+            }
+
+            // mulai video saat enabled ON
+            el.play().catch(() => {});
+            // pause saat TTS selesai (duration video, jadi stop bareng selesai ngomong)
+            el.onloadedmetadata = () => {
+              // restart dari awal setiap subtitle baru
+              el.currentTime = 0;
+            };
+
+            // estimasi durasi bicara -> pause video
+            const words = message.trim().split(/\s+/).filter(Boolean).length;
+            const wpm = 160 * 0.98; // kira2 sesuai rate kamu
+            const ms = Math.max(1200, (words / wpm) * 60_000);
+
+            window.setTimeout(() => {
+              el.pause();
+            }, ms);
+          }}
+          src={nurseVideo}
+          autoPlay
+          muted
+          playsInline
+          className="h-full w-full object-contain"
         />
       </motion.div>
 

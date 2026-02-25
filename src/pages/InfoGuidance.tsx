@@ -60,6 +60,7 @@ const InfoGuidance = () => {
         <div className="w-full max-w-5xl mx-auto flex items-end gap-6">
           {/* Nurse with speech bubble */}
           <NurseSpeechBubble
+            enabled={true}
             message="This is the Info and Guidance section. You can learn about your department, explore hospital resources, or check available facilities. Tap 'Facilities' to see what's nearby!"
           />
 

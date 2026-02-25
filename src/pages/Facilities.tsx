@@ -64,6 +64,7 @@ const Facilities = () => {
         <div className="w-full max-w-5xl mx-auto flex items-end gap-6">
           {/* Nurse with speech bubble */}
           <NurseSpeechBubble
+            enabled={true}
             message="Here are the facilities available at the hospital. You can find restrooms on every floor, a pharmacy, and stores nearby. Tap any option to navigate to the location!"
           />
 

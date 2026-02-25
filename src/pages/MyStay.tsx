@@ -60,6 +60,7 @@ const MyStay = () => {
         <div className="app-container flex items-end gap-6">
           {/* Nurse with speech bubble */}
           <NurseSpeechBubble
+           enabled={true}
             message="Welcome to MyStay! Here you can find information about your department, view your care plan, or contact your care team. Tap 'Info and Guidance' to learn more."
           />
 

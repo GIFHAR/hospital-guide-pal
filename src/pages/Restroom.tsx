@@ -14,7 +14,9 @@ const Restroom = () => {
       <PageTransition>
         <div className="w-full max-w-5xl mx-auto flex items-end gap-6">
           {/* Nurse + bubble */}
-          <NurseSpeechBubble message="Here’s how to reach the nearest restroom from your room. Follow the steps on the screen." />
+          <NurseSpeechBubble 
+           enabled={true}
+           message="Here’s how to reach the nearest restroom from your room. Follow the steps on the screen." />
 
           {/* Content */}
           <div className="flex-1 flex flex-col gap-5">
