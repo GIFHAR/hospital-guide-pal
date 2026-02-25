@@ -97,13 +97,13 @@ const MyStay = () => {
 
             {/* Back */}
             <button
-              onClick={() => navigate('/home')}
-              className="flex items-center gap-2 text-sm font-medium text-foreground self-start"
+              onClick={() => navigate(-1)}
+              className="self-start flex items-center gap-3 rounded-full border border-border bg-card px-5 py-3 shadow-sm hover:shadow transition"
             >
-              <span className="w-7 h-7 rounded-full bg-primary flex items-center justify-center">
-                <ArrowLeft className="w-4 h-4 text-primary-foreground" />
+              <span className="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
+                <ArrowLeft className="w-5 h-5 text-primary-foreground" />
               </span>
-              Go Back
+              <span className="text-lg font-semibold text-foreground">Go Back</span>
             </button>
           </div>
         </div>

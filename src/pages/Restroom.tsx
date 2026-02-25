@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import LayoutShell from '@/components/LayoutShell';
 import PageTransition from '@/components/PageTransition';
 import NurseSpeechBubble from '@/components/NurseSpeechBubble';
+import toiletIcon from '@/assets/05_restroom/restroom.png';
 
 const Restroom = () => {
   const navigate = useNavigate();
@@ -18,17 +19,13 @@ const Restroom = () => {
           {/* Content */}
           <div className="flex-1 flex flex-col gap-5">
             {/* Header */}
-            <div className="flex items-center gap-3">
-              {/* Icon placeholder */}
-              <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center border border-border">
-                {/* kalau sudah ada icon file, ganti div ini jadi <img src={restroomIcon} .../> */}
-                <span className="text-xl">🚻</span>
-              </div>
-
-              <h2 className="text-4xl font-bold text-foreground">Restroom</h2>
-
-              {/* optional: small trophy/marker icon like screenshot */}
-              <span className="ml-1 text-2xl opacity-70">🏆</span>
+            <div className="flex items-center gap-2">
+              <img 
+                src={toiletIcon} 
+                alt="Toilet" 
+                className="w-12 h-12 object-contain" 
+              />
+              <h2 className="text-3xl font-bold text-foreground">Restroom</h2>
             </div>
 
             {/* Main info card */}
@@ -38,7 +35,7 @@ const Restroom = () => {
               transition={{ duration: 0.25 }}
               className="rounded-3xl bg-secondary p-8"
             >
-              <div className="rounded-3xl bg-[#dfead2] p-8 leading-relaxed text-[22px] text-foreground/90">
+              <div className="rounded-3xl bg-secondary p-8 leading-relaxed text-[22px] text-foreground/90">
                 <p className="mb-5">
                   Your room is on the first floor.
                   <br />
@@ -53,7 +50,7 @@ const Restroom = () => {
                   <li>Step outside your room and turn right.</li>
                   <li>Walk along the corridor and pass three other patient rooms.</li>
                   <li>
-                    After you pass room 1-1-09, you&apos;ll find the restroom on your left—just look for
+                    After you pass room 9, you&apos;ll find the restroom on your left—just look for
                     the restroom sign.
                   </li>
                 </ol>

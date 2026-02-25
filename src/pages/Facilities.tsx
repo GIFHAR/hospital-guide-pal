@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Building, ArrowLeft } from 'lucide-react';
+import { Building, ArrowLeft, Route } from 'lucide-react';
 import { toast } from 'sonner';
 import LayoutShell from '@/components/LayoutShell';
 import PageTransition from '@/components/PageTransition';
@@ -21,18 +21,21 @@ const facilities = [
     label: 'Restroom',
     description: 'Navigate the location near me',
     image: toiletIcon,
+    route: '/facilities/restroom',
   },
   {
     id: 'Pharmacy',
     label: 'Pharmacy',
     description: 'Navigate the location near me',
     image: pharmaIcon,
+    route: null,
   },
   {
     id: 'Stores',
     label: 'Stores',
     description: 'Restaurant and Convenience Store',
     image: storeIcon,
+    route: null,
   },
 ];
 
@@ -46,18 +49,14 @@ const Facilities = () => {
   //   setTimeout(() => setDimmedTiles(null), 500);
   // };
   const handleTileClick = (facility: typeof facilities[0]) => {
-    setDimmedTiles(facility.id);
+      if (facility.route) {
+        setDimmedTiles(facility.id);
+        setTimeout(() => navigate(facility.route!), 350);
+      } else {
+        toast('Coming soon');
+      }
+    };
 
-    // ⭐ Jika Restroom → pindah page
-    if (facility.id === 'Restroom') {
-      setTimeout(() => navigate('/facilities/restroom'), 250);
-      return;
-    }
-
-    // selain Restroom → tetap toast
-    toast(`Opening ${facility.label}...`);
-    setTimeout(() => setDimmedTiles(null), 500);
-  };
 
   return (
     <LayoutShell showNurseToggle>
@@ -98,13 +97,13 @@ const Facilities = () => {
             </motion.div>
 
             <button
-              onClick={() => navigate('/mystay/info-guidance')}
-              className="flex items-center gap-2 text-sm font-medium text-foreground self-start"
+              onClick={() => navigate(-1)}
+              className="self-start flex items-center gap-3 rounded-full border border-border bg-card px-5 py-3 shadow-sm hover:shadow transition"
             >
-              <span className="w-7 h-7 rounded-full bg-primary flex items-center justify-center">
-                <ArrowLeft className="w-4 h-4 text-primary-foreground" />
+              <span className="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
+                <ArrowLeft className="w-5 h-5 text-primary-foreground" />
               </span>
-              Go Back
+              <span className="text-lg font-semibold text-foreground">Go Back</span>
             </button>
           </div>
         </div>
