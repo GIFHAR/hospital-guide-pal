@@ -41,6 +41,7 @@ const Home = () => {
         <div className="app-container w-full max-w-5xl mx-auto flex items-end gap-4">
           {/* Nurse with speech bubble */}
           <NurseSpeechBubble
+            enabled={nurseAssistanceEnabled}
             message="Hello! I'm Nurse Louise. Welcome to your tablet. Tap 'MyStay' to explore your stay information, comfort settings, and more!"
           />
 
