@@ -40,8 +40,21 @@ const Facilities = () => {
   const navigate = useNavigate();
   const [dimmedTiles, setDimmedTiles] = useState<string | null>(null);
 
+  // const handleTileClick = (facility: typeof facilities[0]) => {
+  //   setDimmedTiles(facility.id);
+  //   toast(`Opening ${facility.label}...`);
+  //   setTimeout(() => setDimmedTiles(null), 500);
+  // };
   const handleTileClick = (facility: typeof facilities[0]) => {
     setDimmedTiles(facility.id);
+
+    // ⭐ Jika Restroom → pindah page
+    if (facility.id === 'Restroom') {
+      setTimeout(() => navigate('/facilities/restroom'), 250);
+      return;
+    }
+
+    // selain Restroom → tetap toast
     toast(`Opening ${facility.label}...`);
     setTimeout(() => setDimmedTiles(null), 500);
   };

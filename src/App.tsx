@@ -10,6 +10,9 @@ import MyStay from "./pages/MyStay";
 import InfoGuidance from "./pages/InfoGuidance";
 import Facilities from "./pages/Facilities";
 import NotFound from "./pages/NotFound";
+import Restroom from '@/pages/Restroom';
+
+// ...
 
 const queryClient = new QueryClient();
 
@@ -26,6 +29,7 @@ const App = () => (
             <Route path="/mystay" element={<MyStay />} />
             <Route path="/mystay/info-guidance" element={<InfoGuidance />} />
             <Route path="/mystay/info-guidance/facilities" element={<Facilities />} />
+            <Route path="/facilities/restroom" element={<Restroom />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AnimatePresence>
