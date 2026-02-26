@@ -42,7 +42,7 @@ const Home = () => {
           {/* Nurse with speech bubble */}
           <NurseSpeechBubble
             enabled={nurseAssistanceEnabled}
-            message="Hello! I'm Nurse Louise. Welcome to your tablet. Tap 'MyStay' to explore your stay information, comfort settings, and more!"
+            message="Hello Lars. I’m Maria, your nurse assistant. I’m here to help make your stay more comfortable and to support you whenever you need something. Just let me know how I can assist you."
           />
 
           {/* Main panel */}

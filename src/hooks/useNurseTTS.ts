@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 type Options = {
   lang?: string;      // e.g. 'en-US'
@@ -6,6 +6,9 @@ type Options = {
   pitch?: number;     // 0 - 2
   volume?: number;    // 0 - 1
   preferredVoiceHints?: string[]; // keywords to match
+  onStart?: () => void;
+  onEnd?: () => void;
+  onError?: (e: SpeechSynthesisErrorEvent) => void;
 };
 
 export function useNurseTTS(options: Options = {}) {
@@ -15,6 +18,9 @@ export function useNurseTTS(options: Options = {}) {
     pitch = 1.05,
     volume = 1,
     preferredVoiceHints = ['Google', 'Microsoft', 'Samantha', 'Natural', 'Neural'],
+    onStart,
+    onEnd,
+    onError,
   } = options;
 
   const [ready, setReady] = useState(false);
@@ -42,7 +48,8 @@ export function useNurseTTS(options: Options = {}) {
     if (!voices.length) return null;
 
     // 1) match language
-    const langVoices = voices.filter(v => (v.lang || '').toLowerCase().startsWith(lang.toLowerCase().slice(0, 2)));
+    const langPrefix = lang.toLowerCase().slice(0, 2);
+    const langVoices = voices.filter(v => (v.lang || '').toLowerCase().startsWith(langPrefix));
     const pool = langVoices.length ? langVoices : voices;
 
     // 2) try hints (more natural names first)
@@ -61,26 +68,60 @@ export function useNurseTTS(options: Options = {}) {
     return scored[0]?.v ?? pool[0];
   }, [voices, lang, preferredVoiceHints]);
 
-  const stop = () => {
-    if (!('speechSynthesis' in window)) return;
-    window.speechSynthesis.cancel();
-    currentUtterRef.current = null;
-  };
+  
+  const stop = useCallback(() => {
+      if (!('speechSynthesis' in window)) return;
+      try {
+        window.speechSynthesis.cancel();
+      } finally {
+        currentUtterRef.current = null;
+      }
+    }, []);
 
-  const speak = (text: string) => {
-    if (!('speechSynthesis' in window)) return;
-    stop();
 
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = lang;
-    u.rate = rate;
-    u.pitch = pitch;
-    u.volume = volume;
-    if (pickVoice) u.voice = pickVoice;
+  const speak = useCallback(
+      (text: string) => {
+        if (!('speechSynthesis' in window)) return Promise.resolve();
 
-    currentUtterRef.current = u;
-    window.speechSynthesis.speak(u);
-  };
+        // Stop any ongoing speech first
+        stop();
+
+        return new Promise<void>((resolve, reject) => {
+          const u = new SpeechSynthesisUtterance(text);
+          u.lang = lang;
+          u.rate = rate;
+          u.pitch = pitch;
+          u.volume = volume;
+          if (pickVoice) u.voice = pickVoice;
+
+          u.onstart = () => {
+            onStart?.();
+          };
+          u.onend = () => {
+            currentUtterRef.current = null;
+            onEnd?.();
+            resolve();
+          };
+          u.onerror = (e) => {
+            currentUtterRef.current = null;
+            onError?.(e);
+            reject(e);
+          };
+
+          currentUtterRef.current = u;
+
+          // Some browsers need a microtask delay if voices aren't fully ready yet,
+          // but we already track readiness; still, try/catch for safety.
+          try {
+            window.speechSynthesis.speak(u);
+          } catch (e) {
+            currentUtterRef.current = null;
+            reject(e as any);
+          }
+        });
+      },
+      [lang, rate, pitch, volume, pickVoice, onStart, onEnd, onError, stop]
+    );
 
   return { ready, voices, speak, stop, voice: pickVoice };
 }

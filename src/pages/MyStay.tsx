@@ -8,9 +8,6 @@ import PageTransition from '@/components/PageTransition';
 import CardTile from '@/components/CardTile';
 import NurseSpeechBubble from '@/components/NurseSpeechBubble';
 import { useGuidedSteps } from '@/hooks/useGuidedSteps';
-import cardInfo from '@/assets/card-info.png';
-import cardHealth from '@/assets/card-health.png';
-import cardContact from '@/assets/card-contact.png';
 import houseIcon from '@/assets/02_mystay/house.png';
 import infoIcon from '@/assets/02_mystay/info.png';
 import minSPIcon from '@/assets/02_mystay/minsp.png';
@@ -61,7 +58,7 @@ const MyStay = () => {
           {/* Nurse with speech bubble */}
           <NurseSpeechBubble
            enabled={true}
-            message="Welcome to MyStay! Here you can find information about your department, view your care plan, or contact your care team. Tap 'Info and Guidance' to learn more."
+            message="Great job, Lars. Now, please tap the “Info and Guidance” button. I’m right here with you."
           />
 
           <div className="flex-1 flex flex-col gap-4">

@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 // import nurseImg from '@/assets/nurse-portrait.png';
 import { useNurseTTS } from '@/hooks/useNurseTTS';
-import nurseVideo from '@/assets/nurse-talking-2.mp4';
+import nurseGIF from '@/assets/nurse-talking-2.gif';
 
 interface NurseSpeechBubbleProps {
   message: string;
@@ -93,39 +93,7 @@ const NurseSpeechBubble = ({ message, enabled }: NurseSpeechBubbleProps) => {
         transition={{ duration: 0.5 }}
         className="w-[260px] h-[420px] mt-6 ml-6"
       >
-        <video
-          ref={(el) => {
-            if (!el) return;
-
-            // stop video kalau toggle OFF
-            if (!enabled) {
-              el.pause();
-              return;
-            }
-
-            // mulai video saat enabled ON
-            el.play().catch(() => {});
-            // pause saat TTS selesai (duration video, jadi stop bareng selesai ngomong)
-            el.onloadedmetadata = () => {
-              // restart dari awal setiap subtitle baru
-              el.currentTime = 0;
-            };
-
-            // estimasi durasi bicara -> pause video
-            const words = message.trim().split(/\s+/).filter(Boolean).length;
-            const wpm = 160 * 0.98; // kira2 sesuai rate kamu
-            const ms = Math.max(1200, (words / wpm) * 60_000);
-
-            window.setTimeout(() => {
-              el.pause();
-            }, ms);
-          }}
-          src={nurseVideo}
-          autoPlay
-          muted
-          playsInline
-          className="h-full w-full object-contain"
-        />
+      <img src={nurseGIF}/>
       </motion.div>
 
       {/* Bubble */}

@@ -8,9 +8,6 @@ import PageTransition from '@/components/PageTransition';
 import CardTile from '@/components/CardTile';
 import NurseSpeechBubble from '@/components/NurseSpeechBubble';
 import { useGuidedSteps } from '@/hooks/useGuidedSteps';
-import cardInfo from '@/assets/card-info.png';
-import cardHealth from '@/assets/card-health.png';
-import cardContact from '@/assets/card-contact.png';
 import infoIcon from '@/assets/03_info/info.png';
 import cardioIcon from '@/assets/03_info/cardio.png';
 import regionHIcon from '@/assets/03_info/regionH.png';
@@ -57,11 +54,11 @@ const InfoGuidance = () => {
   return (
     <LayoutShell showNurseToggle>
       <PageTransition>
-        <div className="w-full max-w-5xl mx-auto flex items-end gap-6">
+        <div className="app-container flex items-end gap-6">
           {/* Nurse with speech bubble */}
           <NurseSpeechBubble
             enabled={true}
-            message="This is the Info and Guidance section. You can learn about your department, explore hospital resources, or check available facilities. Tap 'Facilities' to see what's nearby!"
+            message="Perfect. On this screen, please look for the “Facilities” button and tap it. You’re doing really well."
           />
 
           <div className="flex-1 flex flex-col gap-4">

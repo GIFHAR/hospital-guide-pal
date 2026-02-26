@@ -12,11 +12,19 @@ const Restroom = () => {
   return (
     <LayoutShell showNurseToggle>
       <PageTransition>
-        <div className="w-full max-w-5xl mx-auto flex items-end gap-6">
+        <div className="app-container flex items-end gap-6">
           {/* Nurse + bubble */}
           <NurseSpeechBubble 
            enabled={true}
-           message="Here’s how to reach the nearest restroom from your room. Follow the steps on the screen." />
+           message={`Here you go, Lars. I will guide you step by step so you can easily find the nearest restroom.
+                    Your room is on the first floor. There are four restrooms on this floor.
+                    The closest restroom to your room is simple to reach. Please follow these steps:
+                    Step one: Step outside your room and turn right.
+                    Step two: Walk along the corridor. You will pass three other patient rooms.
+                    Step three: After you pass room number nine, look to your left.
+                    Step four: You will see the restroom. Just look for the restroom sign.
+                    If you ever need help again, I am always here for you, Lars.
+                    `} />
 
           {/* Content */}
           <div className="flex-1 flex flex-col gap-5">
