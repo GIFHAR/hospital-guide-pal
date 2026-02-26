@@ -38,11 +38,11 @@ The AI assistant is **not implemented yet** — it is a **design concept** that 
 
 The concept includes:
 
-Natural‑language explanations of instructions and features
-Step‑by‑step task guidance
-Translation support for non‑Danish speakers
-Understanding free‑text patient needs (e.g., “I need water”, “I’m in pain”)
-Assisting future differentiated patient call workflows
+- Natural‑language explanations of instructions and features
+- Step‑by‑step task guidance
+- Translation support for non‑Danish speakers
+- Understanding free‑text patient needs (e.g., “I need water”, “I’m in pain”)
+- Assisting future differentiated patient call workflows
 
 Note: In this prototype, all AI behavior is **mocked or visual‑only** with no backend or model integration.
 
