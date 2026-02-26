@@ -69,6 +69,7 @@ git clone https://github.com/GIFHAR/hospital-guide-pal
 cd hospital-guide-pal
 npm install
 npm run dev
+```
 
 ---
 
