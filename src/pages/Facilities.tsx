@@ -7,9 +7,7 @@ import LayoutShell from '@/components/LayoutShell';
 import PageTransition from '@/components/PageTransition';
 import CardTile from '@/components/CardTile';
 import NurseSpeechBubble from '@/components/NurseSpeechBubble';
-import cardInfo from '@/assets/card-info.png';
-import cardHealth from '@/assets/card-health.png';
-import cardContact from '@/assets/card-contact.png';
+import { useGuidedSteps } from '@/hooks/useGuidedSteps';
 import facilityIcon from '@/assets/04_facility/facility.png';
 import toiletIcon from '@/assets/04_facility/restroom.png';
 import pharmaIcon from '@/assets/04_facility/pharma.png';
@@ -41,6 +39,7 @@ const facilities = [
 
 const Facilities = () => {
   const navigate = useNavigate();
+  const { highlightTarget } = useGuidedSteps();
   const [dimmedTiles, setDimmedTiles] = useState<string | null>(null);
 
   // const handleTileClick = (facility: typeof facilities[0]) => {
@@ -48,10 +47,10 @@ const Facilities = () => {
   //   toast(`Opening ${facility.label}...`);
   //   setTimeout(() => setDimmedTiles(null), 500);
   // };
-  const handleTileClick = (facility: typeof facilities[0]) => {
-      if (facility.route) {
-        setDimmedTiles(facility.id);
-        setTimeout(() => navigate(facility.route!), 350);
+  const handleTileClick = (tile: typeof facilities[0]) => {
+      if (tile.route) {
+        setDimmedTiles(tile.id);
+        setTimeout(() => navigate(tile.route!), 350);
       } else {
         toast('Coming soon');
       }
@@ -90,6 +89,7 @@ const Facilities = () => {
                     image={f.image}
                     label={f.label}
                     description={f.description}
+                    highlighted={highlightTarget === f.label}
                     dimmed={dimmedTiles !== null && dimmedTiles !== f.id}
                     onClick={() => handleTileClick(f)}
                   />

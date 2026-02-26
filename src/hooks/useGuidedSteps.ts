@@ -6,6 +6,7 @@ const GUIDED_STEPS: Record<string, { message: string; step: number }> = {
   '/home': { message: 'Step 1: Tap MyStay', step: 1 },
   '/mystay': { message: 'Step 2: Tap Info and Guidance', step: 2 },
   '/mystay/info-guidance': { message: 'Step 3: Tap Facilities', step: 3 },
+  '/mystay/info-guidance/facilities': { message: 'Step 4: Tap Restroom', step: 4 },
 };
 
 export const useGuidedSteps = () => {
@@ -29,8 +30,9 @@ export const useGuidedSteps = () => {
 function getHighlightTarget(pathname: string): string | null {
   switch (pathname) {
     case '/home': return 'MyStay';
-    case '/mystay': return 'Info and Guidance';
+    case '/mystay': return 'Info & Guidance';
     case '/mystay/info-guidance': return 'Facilities';
+    case '/mystay/info-guidance/facilities': return 'Restroom';
     default: return null;
   }
 }
