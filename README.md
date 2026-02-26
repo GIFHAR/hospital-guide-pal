@@ -64,10 +64,10 @@ Our UI is compatible with upcoming bedside tablet capabilities:
 
 ## 🚀 Running the Project Locally  
 
-git clone https://github.com/GIFHAR/hospital-guide-pal
-cd hospital-guide-pal
-npm install
-npm run dev
+<br>git clone https://github.com/GIFHAR/hospital-guide-pal
+<br>cd hospital-guide-pal
+<br>npm install
+<br>npm run dev
 
 ---
 
@@ -84,7 +84,7 @@ Our solution is designed to meet Region H’s expectations for the future New No
 ---
 
 ## 🤝 Team  
-**Gifhar Rahman**
-**Ahmad Jibril Hemdi**  
+- **Gifhar Rahman**
+- **Ahmad Jibril Hemdi**  
 
 ---
