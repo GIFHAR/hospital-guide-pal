@@ -33,15 +33,18 @@ A redesigned bedside tablet experience built on **universal design**, **simplici
 - Visual cues and friendly micro‑interactions  
 - WCAG‑inspired universal design principles
 
-### ✔ 2. AI‑Powered Patient Assistant  
-The AI assistant helps patients by:  
-- Explaining instructions and features in natural language  
-- Guiding them through tasks step‑by‑step  
-- Translating content for non‑Danish speakers  
-- Understanding typed or spoken needs (e.g., “I need water”, “I’m in pain”)  
-- Supporting future "differentiated patient call" workflows defined by Region H
+### ✔ 2. AI‑Powered Patient Assistant (Concept Only)
+The AI assistant is **not implemented yet** — it is a **design concept** that outlines how AI could support patients in the future.
 
-All AI interactions in this prototype are simulated (no backend).
+The concept includes:
+
+Natural‑language explanations of instructions and features
+Step‑by‑step task guidance
+Translation support for non‑Danish speakers
+Understanding free‑text patient needs (e.g., “I need water”, “I’m in pain”)
+Assisting future differentiated patient call workflows
+
+Note: In this prototype, all AI behavior is **mocked or visual‑only** with no backend or model integration.
 
 ### ✔ 3. Future‑Ready for Region H Features  
 Our UI is compatible with upcoming bedside tablet capabilities:  
