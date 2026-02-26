@@ -62,12 +62,13 @@ Our UI is compatible with upcoming bedside tablet capabilities:
 
 ---
 
-## 🚀 Running the Project Locally  
+## 🚀 Running the Project Locally
 
-<br>git clone https://github.com/GIFHAR/hospital-guide-pal
-<br>cd hospital-guide-pal
-<br>npm install
-<br>npm run dev
+```bash
+git clone https://github.com/GIFHAR/hospital-guide-pal
+cd hospital-guide-pal
+npm install
+npm run dev
 
 ---
 
